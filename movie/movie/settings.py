@@ -26,7 +26,7 @@ SECRET_KEY = 'h^$p0nef3tcoufb-1--cgd-e5+uk9__anek!7oipu9uqf_asge'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nebsdonuts.pythonanywhere.com']
+ALLOWED_HOSTS = ['nebsdonuts.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -137,6 +137,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
 }
 
 
