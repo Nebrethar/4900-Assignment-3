@@ -2,10 +2,24 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import *
+from rest_framework import generics, permissions, mixins
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
- 
- 
+
+class RegisterApi(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+    def post(self, request, *args,  **kwargs):
+        print(request.data)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer)
+        user = serializer.save()
+        print(user)
+        return Response({
+            "user": UserSerializer(user,context=self.get_serializer_context()).data,
+            "message": "User Created Successfully.  Now perform Login to get your token",
+        })
+
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def movie_list(request):
