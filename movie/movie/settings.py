@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['nebsdonuts.pythonanywhere.com', '127.0.0.1', 'localhost']
 
-
+AUTH_USER_MODEL = "api.CustomUser" 
 # Application definition
 
 INSTALLED_APPS = [
